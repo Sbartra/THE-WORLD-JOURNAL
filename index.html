@@ -16,7 +16,6 @@
 
 
 
-
 </style>
 
 
@@ -46,6 +45,13 @@
     <a href="#business" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Business</a>
     <a href="#editorial" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Editorial</a>
     <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Contact</a>
+
+    <div class="w3-right w3-hide-small w3-padding-large">
+      <form role="search" id="form" action="https://www.google.com/search" method="get" target="_blank">
+        <input id="query" type="search" name="q" value="site:https://ikea.com " autofocus size="50" aria-label="Search through site content">
+       <input type="submit" value="Search">
+     </form>
+  </div>
     <div class="w3-dropdown-hover w3-hide-small">
       <!--<button class="w3-padding-large w3-button" title="More">MORE <i class="fa fa-caret-down"></i></button>     
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
@@ -232,19 +238,37 @@
     }
   }
 
-  const f = document.getElementById('form');
-      const q = document.getElementById('query');
-      const google = 'https://www.google.com/search?q=site%3A+';
-      const site = 'pagedart.com';
 
-      function submitted(event) {
-        event.preventDefault();
-        const url = google + site + '+' + q.value;
-        const win = window.open(url, '_blank');
-        win.focus();
-      }
 
-      f.addEventListener('submit', submitted);
+  var form = document.querySelector("form");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    var search = form.querySelector("input[type=search]");
+    search.value = "site:https://ikea.com " + search.value;
+    form.submit();
+  });
+
+  function my_search_form( $form ) {
+$form = '
+<form role="search" id="form" action="https://www.google.com/search" method="get" target="_blank">
+   <input id="query" type="search" name="q" placeholder="Search..." autofocus size="50" aria-label="Search through site content">
+  <input type="submit" value="Search">
+</form>
+
+  var form = document.querySelector("form");
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    var search = form.querySelector("input[type=search]");
+    search.value = "site:https://ikea.com " + search.value;
+    form.submit();
+  });
+
+return $form;
+}
+
+add_filter( 'get_search_form', 'my_search_form' );
+
 
   </script>
 
