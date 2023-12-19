@@ -48,7 +48,7 @@
 
     <div class="w3-right w3-padding-large">
       <form role="search" id="form" action="https://www.google.com/search" method="get" target="_blank">
-        <input id="query" type="search" name="q" value="site:https://ikea.com " autofocus size="50" aria-label="Search through site content">
+        <input id="query" type="search" name="q" placeholder="Search..." autofocus size="50" aria-label="Search through site content">
        <input type="submit" value="Search">
      </form>
   </div>
@@ -249,25 +249,7 @@
     form.submit();
   });
 
-  function my_search_form( $form ) {
-$form = '
-<form role="search" id="form" action="https://www.google.com/search" method="get" target="_blank">
-   <input id="query" type="search" name="q" placeholder="Search..." autofocus size="50" aria-label="Search through site content">
-  <input type="submit" value="Search">
-</form>
-
-  var form = document.querySelector("form");
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-    var search = form.querySelector("input[type=search]");
-    search.value = "site:https://ikea.com " + search.value;
-    form.submit();
-  });
-
-return $form;
-}
-
-add_filter( 'get_search_form', 'my_search_form' );
+  
 
 
   </script>
